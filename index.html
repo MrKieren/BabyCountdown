@@ -165,6 +165,11 @@
     padding: 22px 14px 18px;
     min-width: 96px;
     box-shadow: 0 10px 26px rgba(20, 70, 120, 0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .num {
