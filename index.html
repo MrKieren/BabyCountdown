@@ -89,7 +89,7 @@
     50% { margin-top: -10px; }
   }
 
-  .stork-video {
+  .stork-image {
     display: block;
     width: 340px;
     height: auto;
@@ -212,9 +212,7 @@
 <div class="cloud cloud5"></div>
 
 <div class="stork-wrap">
-  <video class="stork-video" id="storkVideo" autoplay muted playsinline>
-    <source src="stork.webm" type="video/webm">
-  </video>
+  <img class="stork-image" src="stork.png" alt="A stork carrying a baby">
 </div>
 
 <div class="container">
@@ -268,16 +266,6 @@
 </div>
 
 <script>
-  // Manual loop control instead of the native <video loop> attribute.
-  // Browsers can show a brief stale/incorrect frame right at the native
-  // loop restart point (a seek/buffering quirk) -- explicitly seeking to 0
-  // and replaying on the 'ended' event avoids that.
-  const storkVideo = document.getElementById('storkVideo');
-  storkVideo.addEventListener('ended', () => {
-    storkVideo.currentTime = 0;
-    storkVideo.play();
-  });
-
   const targetDate = new Date("2027-01-26T00:00:00");
 
   function updateCountdown() {
