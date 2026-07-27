@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counting Down to Our Baby Girl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(180deg, #4fa3e3 0%, #7ec3ef 30%, #bfe3fb 65%, #eaf6ff 100%);
+    color: #14395f;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .sun {
+    position: absolute;
+    top: 60px;
+    right: 10%;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffdf0 0%, #ffedab 55%, rgba(255,237,171,0) 75%);
+    box-shadow: 0 0 90px 30px rgba(255, 240, 170, 0.45);
+    animation: pulse 5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .cloud {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50px;
+    opacity: 0.9;
+  }
+  .cloud::before, .cloud::after {
+    content: "";
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  .cloud1 { width: 140px; height: 46px; top: 90px; left: -220px; animation: drift 34s linear infinite; }
+  .cloud1::before { width: 70px; height: 70px; top: -32px; left: 18px; }
+  .cloud1::after { width: 56px; height: 56px; top: -22px; left: 64px; }
+
+  .cloud2 { width: 100px; height: 34px; top: 190px; left: -190px; animation: drift 26s linear infinite; animation-delay: -8s; }
+  .cloud2::before { width: 50px; height: 50px; top: -22px; left: 10px; }
+  .cloud2::after { width: 42px; height: 42px; top: -16px; left: 46px; }
+
+  .cloud3 { width: 170px; height: 52px; top: 340px; left: -240px; animation: drift 44s linear infinite; animation-delay: -20s; opacity: 0.75; }
+  .cloud3::before { width: 78px; height: 78px; top: -36px; left: 22px; }
+  .cloud3::after { width: 60px; height: 60px; top: -26px; left: 78px; }
+
+  .cloud4 { width: 110px; height: 36px; top: 260px; left: -200px; animation: drift 30s linear infinite; animation-delay: -14s; opacity: 0.8; }
+  .cloud4::before { width: 52px; height: 52px; top: -24px; left: 12px; }
+  .cloud4::after { width: 44px; height: 44px; top: -18px; left: 50px; }
+
+  .cloud5 { width: 90px; height: 30px; top: 400px; left: -170px; animation: drift 24s linear infinite; animation-delay: -4s; opacity: 0.65; }
+  .cloud5::before { width: 42px; height: 42px; top: -20px; left: 10px; }
+  .cloud5::after { width: 36px; height: 36px; top: -14px; left: 40px; }
+
+  @keyframes drift {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(100vw + 420px)); }
+  }
+
+  .stork-wrap {
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    animation: hover 4s ease-in-out infinite;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    z-index: 2;
+  }
+  @keyframes hover {
+    0%, 100% { transform: translate(-50%, 0) translateZ(0); }
+    50% { transform: translate(-50%, -10px) translateZ(0); }
+  }
+
+  .stork-image {
+    display: block;
+    width: 340px;
+    height: auto;
+    filter: drop-shadow(0 8px 14px rgba(20, 60, 100, 0.25));
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 40px 24px;
+    margin-top: 120px;
+  }
+
+  .heart-icon {
+    margin-bottom: 12px;
+    color: #f2a0ad;
+  }
+
+  .eyebrow {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: #2f6da6;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #123b66;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .divider .line {
+    width: 46px;
+    height: 1px;
+    background: #f2a0ad;
+  }
+  .divider svg { color: #f2a0ad; }
+
+  .date-label {
+    color: #2f6da6;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 38px;
+  }
+
+  .timer {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .unit {
+    background: linear-gradient(160deg, #eef6fc 0%, #dcecf7 100%);
+    border-radius: 18px;
+    padding: 22px 14px 18px;
+    min-width: 96px;
+    box-shadow: 0 10px 26px rgba(20, 70, 120, 0.15), inset 0 1px 0 rgba(255,255,255,0.6);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 5vw, 2.7rem);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: #123b66;
+    line-height: 1;
+  }
+
+  .unit-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 0 6px;
+  }
+  .unit-divider .line {
+    width: 16px;
+    height: 1px;
+    background: #f2a0ad;
+  }
+  .unit-divider svg { color: #f2a0ad; }
+
+  .unit-label {
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.65rem;
+    color: #3a7bb0;
+    font-weight: 600;
+  }
+
+  .done {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: #123b66;
+  }
+  /* --- DEBUG ONLY --- */
+  .sun { outline: 3px solid red; }
+  .cloud { outline: 3px solid blue; }
+  .stork-wrap { outline: 3px solid lime; }
+  .unit { outline: 3px solid orange; }
+  #debug-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.85);
+    color: #0f0;
+    font: 11px monospace;
+    padding: 8px;
+    z-index: 9999;
+    max-height: 40vh;
+    overflow-y: auto;
+    white-space: pre;
+  }
+  /* --- END DEBUG --- */
+</style>
+</head>
+<body>
+
+<div id="debug-panel">loading debug info...</div>
+
+<div class="sun"></div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+<div class="cloud cloud3"></div>
+<div class="cloud cloud4"></div>
+<div class="cloud cloud5"></div>
+
+<div class="stork-wrap">
+  <img class="stork-image" src="stork.png" alt="A stork carrying a baby">
+</div>
+
+<div class="container">
+  <div class="heart-icon">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <path d="M13 3 L13 8 M13 18 L13 23 M3 13 L8 13 M18 13 L23 13 M6 6 L9.5 9.5 M16.5 16.5 L20 20 M20 6 L16.5 9.5 M9.5 16.5 L6 20" stroke="#f2a0ad" stroke-width="1" stroke-linecap="round"/>
+      <path d="M13 10.5 C11.5 8 7 8.5 7 12.5 C7 15.5 10 17.5 13 20 C16 17.5 19 15.5 19 12.5 C19 8.5 14.5 8 13 10.5 Z" fill="#f2a0ad"/>
+    </svg>
+  </div>
+  <div class="eyebrow">Counting Down To</div>
+  <h1>Our Baby Girl</h1>
+  <div class="divider">
+    <span class="line"></span>
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg>
+    <span class="line"></span>
+  </div>
+  <div class="date-label">Due 26 January 2027</div>
+
+  <div class="timer" id="timer">
+    <div class="unit">
+      <div class="num" id="months">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Months</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="weeks">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Weeks</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="days">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Days</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="hours">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Hours</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="minutes">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Minutes</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="seconds">--</div>
+      <div class="unit-divider"><span class="line"></span><svg width="9" height="9" viewBox="0 0 12 12" fill="#f2a0ad"><path d="M6 3 C5 1.3 2 1.6 2 4.2 C2 6.2 4.2 7.6 6 9.2 C7.8 7.6 10 6.2 10 4.2 C10 1.6 7 1.3 6 3 Z"/></svg><span class="line"></span></div>
+      <div class="unit-label">Seconds</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const targetDate = new Date("2027-01-26T00:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById('timer').innerHTML = '<div class="done">She\'s here!</div>';
+      clearInterval(interval);
+      return;
+    }
+
+    let months = (targetDate.getFullYear() - now.getFullYear()) * 12 + (targetDate.getMonth() - now.getMonth());
+    let cursor = new Date(now);
+    cursor.setMonth(cursor.getMonth() + months);
+    if (cursor > targetDate) {
+      months--;
+      cursor = new Date(now);
+      cursor.setMonth(cursor.getMonth() + months);
+    }
+
+    const remainingMs = targetDate - cursor;
+    const totalDaysRemaining = Math.floor(remainingMs / (1000 * 60 * 60 * 24));
+    const weeks = Math.floor(totalDaysRemaining / 7);
+    const days = totalDaysRemaining % 7;
+
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('months').textContent = months;
+    document.getElementById('weeks').textContent = weeks;
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
+
+  // --- DEBUG ONLY ---
+  function updateDebugPanel() {
+    const panel = document.getElementById('debug-panel');
+    const lines = [];
+    lines.push(`viewport: ${window.innerWidth} x ${window.innerHeight}`);
+    lines.push(`document height (scrollHeight): ${document.documentElement.scrollHeight}`);
+    lines.push(`body height (scrollHeight): ${document.body.scrollHeight}`);
+    lines.push(`scrollY: ${window.scrollY}`);
+    lines.push('');
+    const els = [
+      ['.sun (RED outline)', document.querySelector('.sun')],
+      ['.cloud1 (BLUE)', document.querySelector('.cloud1')],
+      ['.cloud2 (BLUE)', document.querySelector('.cloud2')],
+      ['.cloud3 (BLUE)', document.querySelector('.cloud3')],
+      ['.cloud4 (BLUE)', document.querySelector('.cloud4')],
+      ['.cloud5 (BLUE)', document.querySelector('.cloud5')],
+      ['.stork-wrap (LIME)', document.querySelector('.stork-wrap')],
+    ];
+    document.querySelectorAll('.unit').forEach((u, i) => els.push([`.unit[${i}] (ORANGE)`, u]));
+    for (const [label, el] of els) {
+      if (!el) { lines.push(`${label}: NOT FOUND`); continue; }
+      const r = el.getBoundingClientRect();
+      lines.push(`${label}: top=${r.top.toFixed(0)} left=${r.left.toFixed(0)} w=${r.width.toFixed(0)} h=${r.height.toFixed(0)}`);
+    }
+    panel.textContent = lines.join('\n');
+  }
+  updateDebugPanel();
+  setInterval(updateDebugPanel, 500);
+  // --- END DEBUG ---
+</script>
+
+</body>
+</html>
