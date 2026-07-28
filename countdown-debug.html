@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+  html { height: 100%; background: #eaf6ff; }
 
   body {
     min-height: 100vh;
@@ -19,7 +19,7 @@
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(180deg, #4fa3e3 0%, #7ec3ef 30%, #bfe3fb 65%, #eaf6ff 100%);
     color: #14395f;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
   }
 
@@ -209,34 +209,9 @@
     font-weight: 700;
     color: #123b66;
   }
-  /* --- DEBUG ONLY --- */
-  .sun { outline: 3px solid red; }
-  .cloud { outline: 3px solid blue; }
-  .stork-wrap { outline: 3px solid lime; }
-  .unit { outline: 3px solid orange; }
-  #debug-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0,0,0,0.85);
-    color: #0f0;
-    font: 9px monospace;
-    padding: 4px;
-    z-index: 9999;
-    max-height: 90px;
-    overflow-y: auto;
-    white-space: pre;
-  }
-  #debug-panel.collapsed {
-    max-height: 20px;
-    overflow: hidden;
-  }
 </style>
 </head>
 <body>
-
-<div id="debug-panel" onclick="this.classList.toggle('collapsed')">loading debug info... (tap to hide/show)</div>
 
 <div class="sun"></div>
 <div class="cloud cloud1"></div>
@@ -340,37 +315,6 @@
 
   updateCountdown();
   const interval = setInterval(updateCountdown, 1000);
-
-  // --- DEBUG ONLY ---
-  function updateDebugPanel() {
-    const panel = document.getElementById('debug-panel');
-    const lines = [];
-    lines.push('(tap panel to hide/show)');
-    lines.push(`viewport: ${window.innerWidth} x ${window.innerHeight}`);
-    lines.push(`document height (scrollHeight): ${document.documentElement.scrollHeight}`);
-    lines.push(`body height (scrollHeight): ${document.body.scrollHeight}`);
-    lines.push(`scrollY: ${window.scrollY}`);
-    lines.push('');
-    const els = [
-      ['.sun (RED outline)', document.querySelector('.sun')],
-      ['.cloud1 (BLUE)', document.querySelector('.cloud1')],
-      ['.cloud2 (BLUE)', document.querySelector('.cloud2')],
-      ['.cloud3 (BLUE)', document.querySelector('.cloud3')],
-      ['.cloud4 (BLUE)', document.querySelector('.cloud4')],
-      ['.cloud5 (BLUE)', document.querySelector('.cloud5')],
-      ['.stork-wrap (LIME)', document.querySelector('.stork-wrap')],
-    ];
-    document.querySelectorAll('.unit').forEach((u, i) => els.push([`.unit[${i}] (ORANGE)`, u]));
-    for (const [label, el] of els) {
-      if (!el) { lines.push(`${label}: NOT FOUND`); continue; }
-      const r = el.getBoundingClientRect();
-      lines.push(`${label}: top=${r.top.toFixed(0)} left=${r.left.toFixed(0)} w=${r.width.toFixed(0)} h=${r.height.toFixed(0)}`);
-    }
-    panel.textContent = lines.join('\n');
-  }
-  updateDebugPanel();
-  setInterval(updateDebugPanel, 500);
-  // --- END DEBUG ---
 </script>
 
 </body>
