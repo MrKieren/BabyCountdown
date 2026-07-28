@@ -221,19 +221,22 @@
     right: 0;
     background: rgba(0,0,0,0.85);
     color: #0f0;
-    font: 11px monospace;
-    padding: 8px;
+    font: 9px monospace;
+    padding: 4px;
     z-index: 9999;
-    max-height: 40vh;
+    max-height: 90px;
     overflow-y: auto;
     white-space: pre;
   }
-  /* --- END DEBUG --- */
+  #debug-panel.collapsed {
+    max-height: 20px;
+    overflow: hidden;
+  }
 </style>
 </head>
 <body>
 
-<div id="debug-panel">loading debug info...</div>
+<div id="debug-panel" onclick="this.classList.toggle('collapsed')">loading debug info... (tap to hide/show)</div>
 
 <div class="sun"></div>
 <div class="cloud cloud1"></div>
@@ -342,6 +345,7 @@
   function updateDebugPanel() {
     const panel = document.getElementById('debug-panel');
     const lines = [];
+    lines.push('(tap panel to hide/show)');
     lines.push(`viewport: ${window.innerWidth} x ${window.innerHeight}`);
     lines.push(`document height (scrollHeight): ${document.documentElement.scrollHeight}`);
     lines.push(`body height (scrollHeight): ${document.body.scrollHeight}`);
