@@ -149,6 +149,20 @@
     font-size: 0.9rem;
     letter-spacing: 2px;
     font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .week-badge {
+    display: inline-block;
+    background: linear-gradient(160deg, #fde3e8 0%, #fbd2da 100%);
+    color: #b5495f;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    padding: 8px 20px;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(180, 70, 100, 0.18), inset 0 1px 0 rgba(255,255,255,0.6);
     margin-bottom: 38px;
   }
 
@@ -239,6 +253,7 @@
     <span class="line"></span>
   </div>
   <div class="date-label">Due 26 January 2027</div>
+  <div class="week-badge" id="weekBadge"></div>
 
   <div class="timer" id="timer">
     <div class="unit">
@@ -280,6 +295,11 @@
   function updateCountdown() {
     const now = new Date();
     const diff = targetDate - now;
+
+    const pregnancyStart = new Date(targetDate.getTime() - 280 * 24 * 60 * 60 * 1000); // 40 weeks before due date
+    const daysSinceStart = Math.floor((now - pregnancyStart) / (1000 * 60 * 60 * 24));
+    const currentWeek = Math.min(40, Math.max(1, Math.floor(daysSinceStart / 7) + 1));
+    document.getElementById('weekBadge').textContent = `Week ${currentWeek} of 40`;
 
     if (diff <= 0) {
       document.getElementById('timer').innerHTML = '<div class="done">She\'s here!</div>';
