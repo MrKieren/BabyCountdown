@@ -297,9 +297,10 @@
     const diff = targetDate - now;
 
     const pregnancyStart = new Date(targetDate.getTime() - 280 * 24 * 60 * 60 * 1000); // 40 weeks before due date
-    const daysSinceStart = Math.floor((now - pregnancyStart) / (1000 * 60 * 60 * 24));
-    const currentWeek = Math.min(40, Math.max(1, Math.floor(daysSinceStart / 7) + 1));
-    document.getElementById('weekBadge').textContent = `Week ${currentWeek} of 40`;
+    const daysSinceStart = Math.max(0, Math.floor((now - pregnancyStart) / (1000 * 60 * 60 * 24)));
+    const currentWeek = Math.min(40, Math.floor(daysSinceStart / 7));
+    const currentDay = currentWeek < 40 ? daysSinceStart % 7 : 0;
+    document.getElementById('weekBadge').textContent = `Week ${currentWeek}, Day ${currentDay}`;
 
     if (diff <= 0) {
       document.getElementById('timer').innerHTML = '<div class="done">She\'s here!</div>';
